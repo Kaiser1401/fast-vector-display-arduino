@@ -1,3 +1,6 @@
+This is a fork with some changes (different motives, z-lift)
+
+
 [![Demo Video](https://github.com/marciot/fast-vector-display-arduino/raw/master/thumbnail.png)](https://www.youtube.com/watch?v=3Uw0HXeMNiE)
 
 # fast-vector-display-arduino
