@@ -37,6 +37,8 @@ Small changes 2024-2026 Klaus Ening
 
 volatile bool bTmpSwitch = false;
 
+#include "fast-vector-display-arduino.h"
+
 /* Or, to generate your own, uncomment the following and paste in coordinates from
  * an Inkscape SVG path here:
  */
@@ -94,7 +96,6 @@ const fb_idx_t LIFTLIST[] = { 0, 15, 52, 71, 78, 82, 90, 96 };
 
 #define SHOW_FRAMERATE
 
-#include "fast-vector-display-arduino.h"
 
 
 //const fb_idx_t LIFTLIST[] = {0,5,42};
@@ -743,7 +744,7 @@ ISR(TIMER1_OVF_vect){
     //if((fb_head-fb_disp)==[liftidx])
     //digitalWrite(Z_PIN,(fb_disp-fb_head)<50);
     
-    if((fb_disp-fb_head)==LIFTLIST[liftidx]-2)
+    if((fb_disp-fb_head)==LIFTLIST[liftidx])
     {
         digitalWrite(Z_PIN,true);        
         liftidx++;
