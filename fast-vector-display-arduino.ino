@@ -37,7 +37,7 @@ Small changes 2024-2026 Klaus Ening
 
 volatile bool bTmpSwitch = false;
 
-#include "fast-vector-display-arduino.h"
+
 
 /* Or, to generate your own, uncomment the following and paste in coordinates from
  * an Inkscape SVG path here:
@@ -59,8 +59,10 @@ volatile bool bTmpSwitch = false;
 
 // halloween.svg
 #define USER_PATTERN{ 24.1018, 15.3108, 23.8679, 17.5416, 23.1654, 19.4709, 22.0717, 21.0958, 20.6641, 22.4132, 17.2162, 24.1129, 13.4399, 24.5448, 9.47805, 23.7443, 6.04957, 21.9291, 3.66017, 19.2924, 3.01317, 17.7264, 2.81559, 16.0273, 3.07543, 13.4683, 3.6866, 11.3502, 4.62601, 9.64298, 5.87062, 8.31691, 9.1832, 6.68891, 11.9604, 6.38774, 14.9327, 6.30775, 18.015, 6.78988, 21.3396, 8.43614, 22.5224, 9.69155, 23.3799, 11.249, 24.1018, 15.3108, 24.1018, 15.3108, 13.9993, 2.45929, 13.148, 2.81789, 12.6478, 3.44013, 12.2524, 5.11649, 11.9174, 6.77082, 11.4927, 7.36542, 10.747, 7.68545, 13.3241, 8.33802, 14.879, 8.20399, 16.7183, 7.5788, 15.6111, 7.01724, 14.9658, 6.27901, 14.957, 5.29743, 15.7587, 4.00578, 15.9352, 4.13963, 15.3437, 4.26833, 14.5351, 3.84549, 13.9833, 3.11885, 14.0112, 2.51404, 14.6027, 2.38529, 15.4112, 2.8081, 15.9632, 3.53478, 15.9352, 4.13963, 15.9352, 4.13963, 9.12678, 10.3541, 11.6527, 14.5774, 9.50356, 14.7449, 7.27953, 14.1627, 9.12678, 10.3541, 17.9108, 10.5048, 15.4602, 14.5774, 17.6484, 14.7118, 19.9087, 14.1249, 17.9108, 10.5048, 12.2181, 16.6514, 13.5376, 14.1249, 14.8193, 16.7268, 12.2181, 16.6514, 6.26165, 15.5578, 9.05139, 17.2925, 8.97599, 18.5745, 10.4085, 19.0647, 10.484, 17.8958, 12.8213, 18.2351, 12.9344, 19.4418, 14.1408, 19.555, 14.2916, 18.2729, 16.5912, 17.9712, 16.7043, 18.9893, 17.9861, 18.6499, 18.0992, 17.2547, 20.7759, 15.7087, 19.3988, 19.1204, 18.2235, 20.3663, 16.6666, 21.2518, 15.9503, 20.1206, 14.8948, 20.46, 14.7816, 21.7798, 12.2558, 21.8552, 12.2558, 20.4977, 11.0494, 20.196, 10.5594, 21.3272, 8.66053, 20.2208, 7.39917, 18.8547, 6.64348, 17.2824, 6.26165, 15.5578, 6.26165, 15.5578, 11.0117, 7.14881, 8.30227, 8.92385, 6.45487, 10.8982, 5.36297, 13.0041, 4.91998, 15.1739, 5.01933, 17.3398, 5.55446, 19.434, 7.50572, 23.1373, 8.36975, 14.5611, 8.61383, 17.0209, 11.9916, 8.0912, 9.465, 10.9202, 11.9916, 8.0912, 11.9916, 8.0912, 12.902, 21.8184, 13.0852, 24.5325, 12.6099, 16.6702, 12.6354, 18.1655, 13.613, 8.46862, 12.7491, 13.8093, 12.6853, 15.7085, 17.7658, 20.5816, 16.5158, 24.3063, 18.658, 14.3242, 18.6759, 15.6101, 18.4588, 17.0887, 15.3095, 8.16697, 16.985, 9.83427, 17.6713, 10.9784, 16.7043, 7.45047, 20.0919, 10.2787, 21.1564, 11.9391, 21.7935, 13.7668, 21.997, 15.7641, 21.761, 17.9335, 19.9464, 22.7978, 9.27758, 20.5543, 10.2766, 23.7595 }
-const fb_idx_t LIFTLIST[] = { 0, 18, 25, 39, 49, 54, 59, 63, 92, 100, 102, 104, 106, 108, 110, 113, 115, 118, 121, 128 };
+#define LIFTLIST_TMP{ 0, 18, 25, 39, 49, 54, 59, 63, 92, 100, 102, 104, 106, 108, 110, 113, 115, 118, 121, 128 } // generated
 #define LIFTCOUNT 20
+#define LIFTLIST_TMP{ 0, 18, 24,     47, 52, 57, 61, 89, 97,   99, 101, 102, 104, 106, 109, 111, 114, 117, 124 } // corrected
+#define LIFTCOUNT 19
 /* If your custom pattern uses relative coordinates, such as those obtained
  * from an Inkscape SVG, then leave the following defined. Otherwise, if you
  * wish to use absolute coordinates, comment out the following line: 
@@ -92,11 +94,12 @@ const fb_idx_t LIFTLIST[] = { 0, 18, 25, 39, 49, 54, 59, 63, 92, 100, 102, 104, 
  */
 //#define FIXED_RC_MODE
 
-#define FRAMEBUFFER_SIZE 340 // Number of points in framebuffer
 
 #define SHOW_FRAMERATE
 
+#define FRAMEBUFFER_SIZE 340 // Number of points in framebuffer
 
+#include "fast-vector-display-arduino.h"
 
 //const fb_idx_t LIFTLIST[] = {0,5,42};
 //#define LIFTCOUNT 3
@@ -108,6 +111,7 @@ const fb_idx_t LIFTLIST[] = { 0, 18, 25, 39, 49, 54, 59, 63, 92, 100, 102, 104, 
 // halloween
 //const fb_idx_t LIFTLIST[] = {0,18,25,39,49,54,59,63,92,100,102,104,106,109,111,113,116,119,121,128};
 //#define LIFTCOUNT 20
+const fb_idx_t LIFTLIST[] = LIFTLIST_TMP ;
 
 volatile int liftidx = 0;
 /****************************** TIMESCALE CONFIGURATION ******************************/
@@ -322,7 +326,7 @@ void draw_buffer(const void *src, uint16_t src_n, const mat_t &transform, uint8_
   float x = 0, y = 0;
   while(unpack_points(src, src_n, x, y, options)) {
     mat_apply(transform, x, y);
-    fb_scissor(x, y);
+    fb_scissor(x, y);    
   }
 }
 
@@ -743,10 +747,16 @@ ISR(TIMER1_OVF_vect){
     
     //if((fb_head-fb_disp)==[liftidx])
     //digitalWrite(Z_PIN,(fb_disp-fb_head)<50);
-    
-    if((fb_disp-fb_head)==LIFTLIST[liftidx])
+
+    fb_idx_t current_point_idx = (fb_disp-fb_head);
+    if (fb_disp < fb_head)
     {
-        digitalWrite(Z_PIN,true);        
+      current_point_idx = FRAMEBUFFER_SIZE + fb_disp - fb_head;
+    }
+    
+    if(current_point_idx ==LIFTLIST[liftidx])
+    {
+        digitalWrite(Z_PIN,true);
         liftidx++;
         if (liftidx == LIFTCOUNT) {liftidx=0;}              
     }
@@ -754,6 +764,12 @@ ISR(TIMER1_OVF_vect){
     {
         digitalWrite(Z_PIN,false);
     }
+
+//    Serial.print(current_point_idx);
+//    Serial.print(':');
+//    Serial.print(fb_disp);
+//    Serial.print(',');
+//    Serial.println(fb_head);
 /*
  * #define LIFTLIST{0,5,43}
 #define LIFTCOUNT 3
@@ -1110,8 +1126,8 @@ void loop() {
   mat_t transform;
   mat_identity(transform);
   mat_translate(transform, cx, cy); // center at 0,0
-  mat_scale(transform, 1/user_pattern_rect.w, 1/user_pattern_rect.h); // scale to l,1 size
-
+  mat_scale(transform, 1/user_pattern_rect.w, 1/user_pattern_rect.h); // scale to l,1 size     
+  
   auto ang = cos(float(millis())/DELAY_1S);
   mat_rotate(transform, ang); // rotate
   
