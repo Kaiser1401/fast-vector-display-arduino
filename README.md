@@ -1,5 +1,8 @@
 This is a fork with some changes (different motives, z-lift)
 
+![halloween](img/osci_kuerbis.jpg)
+
+Original
 
 [![Demo Video](https://github.com/marciot/fast-vector-display-arduino/raw/master/thumbnail.png)](https://www.youtube.com/watch?v=3Uw0HXeMNiE)
 
