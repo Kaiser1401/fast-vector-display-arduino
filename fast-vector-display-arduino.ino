@@ -1135,9 +1135,12 @@ void loop() {
   mat_scale(transform, 0.6, 0.6); // FIT TO DISPLAZ
   
   //mat_scale(transform, 0.7, 0.7); //scale slightly
- 
   
-  mat_translate(transform, 0.5, 0.5);   // move so that all values are positive
+  float dx = cos(float(millis())/DELAY_1S*2.3) / PI * 0.4;
+  float dy = cos(float(millis())/DELAY_1S*3.7) / PI * 0.3;
+  //float dy
+  
+  mat_translate(transform, 0.5+dx, 0.5+dy);   // move so that all values are positive
   
   
  
